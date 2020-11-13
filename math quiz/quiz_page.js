@@ -10,14 +10,14 @@ document.getElementById("player2_name").innerHTML = player2_name + ":";
 document.getElementById("player1_score").innerHTML = player1_score;
 document.getElementById("player2_score").innerHTML = player2_score;
 
-document.getElementById("player_question_turn").innerHTML = "Question turn- " + player1_name;
-document.getElementById("player_answer_turn").innerHTML = "Answer turn- " + player2_name;
+document.getElementById("player_question_turn").innerHTML = "Question turn- " + player2_name;
+document.getElementById("player_answer_turn").innerHTML = "Answer turn- " + player1_name;
 
 
 function send(){
 
     number1 = document.getElementById("number1_input").value;
-    number2 = document.getElementById("number1_input").value;
+    number2 = document.getElementById("number2_input").value;
     actual_answer = parseInt(number1) * parseInt(number2);
 
    question_number = "<h3>" + number1 + " X " + number2;
@@ -28,4 +28,55 @@ function send(){
     document.getElementById("output").innerHTML = row;
     document.getElementById("number1_input").value = "";
     document.getElementById("number2_input").value = "";
+}
+
+
+question_turn = "player2";
+answer_turn = "player1";
+
+
+function check(){
+   answer = document.getElementById("answer_input").value;
+    
+   if(answer == actual_answer){
+
+    if(answer_turn == "player1"){
+        update_player1_score = player1_score + 1;
+        document.getElementById("player1_score").innerHTML = update_player1_score;
+    }
+
+    else{
+        update_player2_score = player2_score + 1;
+        document.getElementById("player2_score").innerHTML = update_player2_score;
+    }
+
+   }
+
+
+   if(question_turn == "player1"){
+
+    question_turn = "player2";
+    document.getElementById("player_question_turn").innerHTML = "Question turn- " + player2_name;
+
+
+   }
+   else{
+       question_turn = "player1";
+       document.getElementById("player_question_turn").innerHTML = "Question turn- " + player1_name;
+   }
+
+   if(answer_turn == "player1"){
+       answer_turn = "player2";
+       document.getElementById("player_answer_turn").innerHTML = "Answer turn- " + player2_name;
+
+   }
+
+   else{
+    answer_turn = "player1";
+    document.getElementById("player_answer_turn").innerHTML = "Answer turn- " + player1_name;
+    
+}
+
+document.getElementById("output").innerHTML = "";
+    
 }
